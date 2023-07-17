@@ -1,0 +1,20 @@
+metadata:
+    language: v1-beta
+    name: "URL params"
+    description: "Tests for params that may take URL input."
+    author: "Ciaran Strutt"
+
+given request then
+    if {base.request.url.query} matches "\burl\b|\bnext\b" then
+        report issue:
+            severity: info
+            confidence: certain
+            detail: `Request {base.request.url} with param {base.request.url.query} may contain potential SSRF params.`
+            remediation: "Test the params for URL input processing."
+		else if {base.request.url.query} matches "\b=https?\:\/\/" then
+		    report issue:
+            severity: info
+            confidence: certain
+            detail: `Request {base.request.url} with param {base.request.url.query} may contain potential SSRF params.`
+            remediation: "Test the params for URL input processing."
+    end if
