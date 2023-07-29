@@ -1,0 +1,16 @@
+metadata:
+    language: v1-beta
+    name: "GraphQL query."
+    description: "Looks in requests to see if there are GraphQL queries."
+    tags: "passive"
+    author: "Ciaran Strutt"
+
+given request then
+    if {latest.request} matches "\"Query|\"queryName\"\:\"(\w+)\"|\"operationName\"\:\"(\w+)\"|query\s+(\b[A-Z]\w+)" then
+        report issue:
+            severity: low
+            confidence: firm
+            detail: "GraphQL query."
+            remediation: "Check for access control issues."
+    end if
+

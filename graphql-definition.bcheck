@@ -1,0 +1,16 @@
+metadata:
+    language: v1-beta
+    name: "GraphQL definition."
+    description: "Looks in responses to see if there are GraphQL schema definitions."
+    tags: "passive"
+    author: "Ciaran Strutt"
+
+given response then
+    if {latest.response} matches "kind\:\"Operation\"\,name\:\"(\w+)\"|query\s+(\b[A-Z]\w+)\(" then
+        report issue:
+            severity: low
+            confidence: firm
+            detail: "GraphQL definition."
+            remediation: "Check for access control issues."
+    end if
+
