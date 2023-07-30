@@ -6,7 +6,7 @@ metadata:
     author: "Ciaran Strutt"
 
 given request then
-    if {latest.request} matches "\"Query|\"queryName\"\:\"(\w+)\"|\"operationName\"\:\"(\w+)\"" then
+    if {latest.request} matches "\"Query|\"queryName\"\:\"(\w+)\"|\"operationName\"\:\"(\w+)\"|\binclude_only\[\]\=" then
         report issue:
             severity: low
             confidence: firm

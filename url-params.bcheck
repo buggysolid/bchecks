@@ -10,6 +10,6 @@ given request then
 		    report issue:
             severity: low
             confidence: certain
-            detail: "Param may contain potential SSRF params."
+            detail: "{latest.request.url} may contain potential SSRF params."
             remediation: "Test the params for URL input processing."
     end if
