@@ -6,11 +6,10 @@ metadata:
     author: "Ciaran Strutt"
 
 given response then
-    if {latest.response} matches "kind\:\"Operation\"\,name\:\"(\w+)\"|query\s+(\b[A-Z]\w+)\(" then
+    if {latest.response} matches "kind\:\"Operation\"\,name\:\"(\w+)\"|query\s+(\b[A-Z]\w+)\(|mutation\s+(\b[A-Z]\w+)\(|operationKind\:\"query\"" then
         report issue:
             severity: low
             confidence: firm
             detail: "GraphQL definition."
             remediation: "Check for access control issues."
     end if
-

@@ -6,11 +6,10 @@ metadata:
     author: "Ciaran Strutt"
 
 given request then
-    if {latest.request} matches "\"Query|\"queryName\"\:\"(\w+)\"|\"operationName\"\:\"(\w+)\"|query\s+(\b[A-Z]\w+)" then
+    if {latest.request} matches "\"Query|\"queryName\"\:\"(\w+)\"|\"operationName\"\:\"(\w+)\"" then
         report issue:
             severity: low
             confidence: firm
             detail: "GraphQL query."
             remediation: "Check for access control issues."
     end if
-
